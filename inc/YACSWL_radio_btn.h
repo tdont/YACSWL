@@ -55,10 +55,9 @@ extern "C" {
 
 
 /******************** INCLUDES ***********************************************/
-#include <stdint.h>
-
 #include "YACSWL_label.h"
-#include "YACSWL_checkable.h"
+#include <YACSGL_font.h>
+
 /******************** CONSTANTS OF MODULE ************************************/
 
 /******************** MACROS DEFINITION **************************************/
@@ -66,14 +65,25 @@ extern "C" {
 /******************** TYPE DEFINITION ****************************************/
 typedef struct
 {
-    YACSWL_wdgt_checkable_t  checkable_part; /* Must remain on top */
-    YACSWL_wdgt_spcfc_label_t label;
-}YACSWL_wdgt_spcfc_radiobtn_t;
-
+    YACSWL_widget_t widget;
+    YACSWL_label_t label;
+    uint16_t radius;
+    uint16_t center_x;
+    uint16_t center_y;
+    bool is_autosized;
+    bool is_checked;
+}YACSWL_radio_btn_t;
 /******************** GLOBAL VARIABLES OF MODULE *****************************/
 
 /******************** API FUNCTION PROTOTYPE *********************************/
-void draw_radiobtn(const YACSWL_wdgt_spcfc_radiobtn_t* const radiobtn);
+
+void YACSWL_radio_btn_init(YACSWL_radio_btn_t* radio_btn);
+
+void YACSWL_radio_btn_set_text(YACSWL_radio_btn_t* radio_btn, const char* text);
+
+void YACSWL_radio_btn_set_autosized(YACSWL_radio_btn_t* radio_btn, bool is_autosized);
+
+void YACSWL_radio_btn_set_checked(YACSWL_radio_btn_t* radio_btn, bool is_checked);
 
 #ifdef __cplusplus
 }
