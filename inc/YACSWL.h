@@ -58,6 +58,7 @@ extern "C" {
 
 #include "YACSWL_label.h"
 #include "YACSWL_radio_btn.h"
+#include "YACSWL_progress_bar.h"
 
 /******************** CONSTANTS OF MODULE ************************************/
 

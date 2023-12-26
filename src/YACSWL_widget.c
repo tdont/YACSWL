@@ -62,7 +62,7 @@
 
 /******************** LOCAL FUNCTION PROTOTYPE *******************************/
 
-static YACSWL_widget_update_sizes(YACSWL_widget_t* widge, bool is_resized);
+static void YACSWL_widget_update_sizes(YACSWL_widget_t* widge, bool is_resized);
 
 /******************** API FUNCTIONS ******************************************/
 
@@ -70,7 +70,7 @@ void YACSWL_widget_init(YACSWL_widget_t* widget)
 {
     if (widget != NULL)
     {
-        memset(widget, 0, sizeof(widget));
+        memset(widget, 0, sizeof(YACSWL_widget_t));
         widget->pixel_foreground = YACSGL_P_BLACK;
         widget->pixel_background = YACSGL_P_WHITE;
         widget->border_width = 1u;
@@ -103,8 +103,8 @@ void YACSWL_widget_draw(YACSWL_widget_t* widget, YACSGL_frame_t* frame)
                     YACSGL_rect_line(frame, 
                                      widget->x_top_width + (i - 1u), 
                                      widget->y_top_heigth + (i - 1u),
-                                     widget->x_bottom_width - (i + 1u), 
-                                     widget->y_bottom_heigth - (i + 1u),
+                                     widget->x_bottom_width - (i - 1u), 
+                                     widget->y_bottom_heigth - (i - 1u),
                                      widget->pixel_foreground);
                 }
 
@@ -314,7 +314,7 @@ void YACSWL_widget_set_transparent_background(YACSWL_widget_t* widget, bool is_t
 
 /******************** LOCAL FUNCTIONS ****************************************/
 
-static YACSWL_widget_update_sizes(YACSWL_widget_t* widget, bool is_resized)
+static void YACSWL_widget_update_sizes(YACSWL_widget_t* widget, bool is_resized)
 {
     widget->x_bottom_width = widget->x_top_width + widget->width;
     widget->y_bottom_heigth = widget->y_top_heigth + widget->height;
