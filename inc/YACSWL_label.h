@@ -80,6 +80,8 @@ void YACSWL_label_init(YACSWL_label_t* label);
 
 void YACSWL_label_set_text(YACSWL_label_t* label, const char* text);
 
+void YACSWL_label_set_font(YACSWL_label_t* label, const YACSGL_font_t* font);
+
 void YACSWL_label_set_autosized(YACSWL_label_t* label, bool is_autosized);
 
 #ifdef __cplusplus

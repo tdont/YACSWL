@@ -51,7 +51,7 @@
 
 #include "YACSWL_label.h"
 
-#include <YACSGL_font_5x7.h>
+#include <YACSGL_font_8x16.h>
 
 /******************** CONSTANTS OF MODULE ************************************/
 
@@ -80,7 +80,7 @@ void YACSWL_label_init(YACSWL_label_t* label)
         label->widget.resize_func = (YACSWL_widget_resize_func_t)YACSWL_label_resize;
 
         // Specific init
-        label->font = &YACSGL_font_5x7;
+        label->font = &YACSGL_font_8x16;
         label->is_autosized = true;
         YACSWL_label_set_text(label, "");
         YACSWL_label_compute_size(label);
@@ -93,6 +93,19 @@ void YACSWL_label_set_text(YACSWL_label_t* label, const char* text)
     {
         label->text = text;
         label->text_size = (uint16_t)strlen(label->text);
+
+        if (label->is_autosized)
+        {
+            YACSWL_label_compute_size(label);
+        }
+    }
+}
+
+void YACSWL_label_set_font(YACSWL_label_t* label, const YACSGL_font_t* font)
+{
+    if ((label != NULL) && (font != NULL))
+    {
+        label->font = font;
 
         if (label->is_autosized)
         {
