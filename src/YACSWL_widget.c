@@ -243,6 +243,26 @@ void YACSWL_widget_set_size(YACSWL_widget_t* widget, uint16_t width, uint16_t he
     }
 }
 
+uint16_t YACSWL_widget_get_width(YACSWL_widget_t* widget)
+{
+    uint16_t width = 0;
+    if (widget != NULL)
+    {
+        width = widget->width;
+    }
+    return width;
+}
+
+uint16_t YACSWL_widget_get_height(YACSWL_widget_t* widget)
+{
+    uint16_t height = 0;
+    if (widget != NULL)
+    {
+        height = widget->height;
+    }
+    return height;
+}
+
 void YACSWL_widget_set_margins(YACSWL_widget_t* widget, uint16_t left, uint16_t top, uint16_t right, uint16_t bottom)
 {
     if (widget != NULL)
@@ -292,7 +312,14 @@ void YACSWL_widget_set_foreground_color(YACSWL_widget_t* widget, YACSGL_pixel_t 
 {
     if (widget != NULL)
     {
-        widget->pixel_foreground = pixel;        
+        widget->pixel_foreground = pixel;
+        
+        YACSWL_widget_t* current = widget->childrens;
+        while (current != NULL)
+        {
+            YACSWL_widget_set_foreground_color(current, pixel);
+            current = current->next;
+        }
     }
 }
 
@@ -301,6 +328,13 @@ void YACSWL_widget_set_background_color(YACSWL_widget_t* widget, YACSGL_pixel_t 
     if (widget != NULL)
     {
         widget->pixel_background = pixel;
+
+        YACSWL_widget_t* current = widget->childrens;
+        while (current != NULL)
+        {
+            YACSWL_widget_set_background_color(current, pixel);
+            current = current->next;
+        }
     }
 }
 
