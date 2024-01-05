@@ -55,8 +55,9 @@ extern "C" {
 
 
 /******************** INCLUDES ***********************************************/
-#include <stdint.h>
+#include "YACSWL_widget.h"
 #include <YACSGL_font.h>
+
 /******************** CONSTANTS OF MODULE ************************************/
 
 /******************** MACROS DEFINITION **************************************/
@@ -64,18 +65,23 @@ extern "C" {
 /******************** TYPE DEFINITION ****************************************/
 typedef struct
 {
-    char* text;
+    YACSWL_widget_t widget;
+    const char* text;
     const YACSGL_font_t* font;
-    uint16_t x;
-    uint16_t y;
-    uint8_t nb_char_line_max;    
-}YACSWL_wdgt_spcfc_label_t;
-
+    uint16_t text_size;
+    bool is_autosized;
+}YACSWL_label_t;
 
 /******************** GLOBAL VARIABLES OF MODULE *****************************/
 
 /******************** API FUNCTION PROTOTYPE *********************************/
-void draw_label(const YACSWL_wdgt_spcfc_label_t* const label);
+
+void YACSWL_label_init(YACSWL_label_t* label);
+
+void YACSWL_label_set_text(YACSWL_label_t* label, const char* text);
+
+void YACSWL_label_set_autosized(YACSWL_label_t* label, bool is_autosized);
+
 #ifdef __cplusplus
 }
 #endif
