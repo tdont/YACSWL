@@ -135,6 +135,10 @@ uint16_t YACSWL_widget_get_pos_y(YACSWL_widget_t* widget);
 
 void YACSWL_widget_set_size(YACSWL_widget_t* widget, uint16_t width, uint16_t height);
 
+uint16_t YACSWL_widget_get_width(YACSWL_widget_t* widget);
+
+uint16_t YACSWL_widget_get_height(YACSWL_widget_t* widget);
+
 void YACSWL_widget_set_margins(YACSWL_widget_t* widget, uint16_t left, uint16_t top, uint16_t right, uint16_t bottom);
 
 void YACSWL_widget_set_z_order(YACSWL_widget_t* widget, uint8_t z_order);
