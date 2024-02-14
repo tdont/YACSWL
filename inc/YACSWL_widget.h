@@ -129,6 +129,12 @@ void YACSWL_widget_remove_child(YACSWL_widget_t* widget, YACSWL_widget_t* child)
 
 void YACSWL_widget_set_pos(YACSWL_widget_t* widget, uint16_t x, uint16_t y);
 
+void YACSWL_widget_center_width_in_parent(YACSWL_widget_t* widget);
+
+void YACSWL_widget_center_height_in_parent(YACSWL_widget_t* widget);
+
+void YACSWL_widget_center_in_parent(YACSWL_widget_t* widget);
+
 uint16_t YACSWL_widget_get_pos_x(YACSWL_widget_t* widget);
 
 uint16_t YACSWL_widget_get_pos_y(YACSWL_widget_t* widget);

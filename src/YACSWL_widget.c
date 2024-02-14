@@ -212,6 +212,85 @@ void YACSWL_widget_set_pos(YACSWL_widget_t* widget, uint16_t x, uint16_t y)
     }
 }
 
+void YACSWL_widget_center_width_in_parent(YACSWL_widget_t* widget)
+{
+    if(widget == NULL)
+    {
+        return;
+    }
+
+    /* Ensure widget has a parent */
+    if(widget->parent == NULL)
+    {
+        return;
+    }
+
+    /* Retrieve widget dimensions */
+    uint16_t widget_width = YACSWL_widget_get_width(widget);
+
+    /* Retrieve parent dimensions */
+    uint16_t parent_width = YACSWL_widget_get_width(widget->parent);
+
+    uint16_t widget_pos_x = 0u;
+
+    /* Compute position x */
+    if(widget_width < parent_width)
+    {
+        widget_pos_x = (parent_width - widget_width) / 2;
+    }
+
+    /* Set position */
+    YACSWL_widget_set_pos(widget, widget_pos_x, YACSWL_widget_get_pos_y(widget));
+}
+
+void YACSWL_widget_center_height_in_parent(YACSWL_widget_t* widget)
+{
+    if(widget == NULL)
+    {
+        return;
+    }
+
+    /* Ensure widget has a parent */
+    if(widget->parent == NULL)
+    {
+        return;
+    }
+
+    /* Retrieve widget dimensions */
+    uint16_t widget_height = YACSWL_widget_get_height(widget);
+
+    /* Retrieve parent dimensions */
+    uint16_t parent_height = YACSWL_widget_get_height(widget->parent);
+
+    uint16_t widget_pos_y = 0u;
+
+    /* Compote position y */
+    if(widget_height < parent_height)
+    {
+        widget_pos_y = (parent_height - widget_height) / 2;
+    }
+
+    /* Set position */
+    YACSWL_widget_set_pos(widget, YACSWL_widget_get_pos_x(widget), widget_pos_y);
+}
+
+void YACSWL_widget_center_in_parent(YACSWL_widget_t* widget)
+{
+    if(widget == NULL)
+    {
+        return;
+    }
+
+    /* Ensure widget has a parent */
+    if(widget->parent == NULL)
+    {
+        return;
+    }
+
+    YACSWL_widget_center_width_in_parent(widget);
+    YACSWL_widget_center_height_in_parent(widget);
+}
+
 uint16_t YACSWL_widget_get_pos_x(YACSWL_widget_t* widget)
 {
     uint16_t x = 0;
